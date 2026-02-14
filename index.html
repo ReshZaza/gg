@@ -1,6 +1,49 @@
-<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="KwMEGjw" data-pen-title="Untitled" data-user="ReshZaza" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-      <span>See the Pen <a href="https://codepen.io/ReshZaza/pen/KwMEGjw">
-  Untitled</a> by ReshZaza (<a href="https://codepen.io/ReshZaza">@ReshZaza</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-      </p>
-      <script async src="https://public.codepenassets.com/embed/index.js"></script>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        body { background-color: #0d1117; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
+        .card { background-color: white; width: 320px; height: 420px; border-radius: 45px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .heart-grid { display: grid; grid-template-columns: repeat(13, 12px); gap: 2px; margin-bottom: 20px; }
+        .heart-dot { width: 12px; height: 12px; color: #ff2d55; font-size: 10px; opacity: 0; animation: fadeIn 0.1s forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .char { position: absolute; left: 30px; bottom: 80px; font-size: 60px; animation: bounce 1s infinite ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .text-love { font-family: 'Georgia', serif; font-size: 30px; color: #d81b60; margin-top: 20px; opacity: 0; animation: fadeIn 1s forwards; animation-delay: 3.5s; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div id="grid" class="heart-grid"></div>
+        <div class="char">🐻</div>
+        <div class="text-love">I Love You</div>
+    </div>
+    <script>
+        const container = document.getElementById('grid');
+        const pattern = [
+            [0,0,1,1,0,0,0,0,0,1,1,0,0],[0,1,1,1,1,0,0,0,1,1,1,1,0],
+            [1,1,1,1,1,1,0,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1,1,1,1,1,0],
+            [0,0,1,1,1,1,1,1,1,1,1,0,0],[0,0,0,1,1,1,1,1,1,1,0,0,0],
+            [0,0,0,0,1,1,1,1,1,0,0,0,0],[0,0,0,0,0,1,1,1,0,0,0,0,0],
+            [0,0,0,0,0,0,1,0,0,0,0,0,0]
+        ];
+        let delay = 0;
+        pattern.forEach(row => {
+            row.forEach(cell => {
+                const dot = document.createElement('div');
+                dot.className = 'heart-dot';
+                if (cell === 1) {
+                    dot.innerHTML = '❤️';
+                    dot.style.animationDelay = (delay * 0.04) + 's';
+                    delay++;
+                }
+                container.appendChild(dot);
+            });
+        });
+    </script>
+</body>
+</html>
